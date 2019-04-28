@@ -37,7 +37,7 @@ function createWindow() {
       host: "https://wchat.freshchat.com"
     });
   }
-
+  win.maximize()
   win.on('closed', () => {
     win = null
   })
