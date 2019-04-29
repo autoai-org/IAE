@@ -1,5 +1,5 @@
 <template>
-    <v-footer color="primary" fixed dark>
+    <v-footer color="primary" fixed dark height="24">
         IAE
         <v-spacer></v-spacer>
         
