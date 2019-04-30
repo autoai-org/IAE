@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import HTMLtab from '@/components/base/HTMLTab'
+import HTMLtab from '@/components/base/tabs/HTMLTab'
 export default {
   props: ["tabs"],
   components: {
