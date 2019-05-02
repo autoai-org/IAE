@@ -1,14 +1,11 @@
-import { ipcMain, Menu, dialog, remote } from 'electron'
+import { BrowserWindow, Menu, dialog } from 'electron'
 
 function selectDirectoryDialog() {
     dialog.showOpenDialog({
         properties: ['openDirectory']
     }, function (filepaths, bookmarks) {
-        const ipc = ipcMain
-        ipc.sender.send('selected-directory', filepaths)
-        console.log(remote.getCurrentWebContents)
-        remote.getCurrentWebContents().send('selected-directory', filepaths)
-        console.log(filepaths)
+        const focusedWindow = BrowserWindow.getFocusedWindow();
+        focusedWindow.webContents.send('selected-directory', filepaths);
     });
 }
 
@@ -46,5 +43,6 @@ function createMenu() {
 }
 
 export {
+    selectDirectoryDialog,
     createMenu
 }

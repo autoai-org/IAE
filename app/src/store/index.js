@@ -7,6 +7,13 @@ const set = property => (store, payload) => (store[property] = payload)
 
 const store = new Vuex.Store({
   state: {
+    snackbar: {
+      enable: false,
+      text: ''
+    },
+    currentTabs: [],
+    currentPath: "",
+    currentFiles: [],
     email: '',
     isLoading: false,
     isReady: false,
@@ -14,6 +21,9 @@ const store = new Vuex.Store({
     snackbar: {}
   },
   mutations: {
+    setCurrentTabs: set('currentTabs'),
+    setCurrentPath: set('currentPath'),
+    setCurrentFiles: set('currentFiles'),
     setEmail: set('email'),
     setIsReady: set('isReady'),
     setIsLoading: set('isLoading'),

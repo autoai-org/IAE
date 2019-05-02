@@ -131,6 +131,7 @@ export default {
 }
 .multipane.layout-v {
   flex-direction: row;
+  height: 100%;
 }
 .multipane > div {
   position: relative;
@@ -149,10 +150,10 @@ export default {
   cursor: row-resize;
 }
 .layout-v > .multipane-resizer {
-  width: 10px;
+  width: 1px;
   height: 100%;
-  margin-left: -10px;
-  left: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
   cursor: col-resize;
 }
 </style>

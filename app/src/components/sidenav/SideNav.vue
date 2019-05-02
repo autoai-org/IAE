@@ -1,5 +1,7 @@
 <template>
-  <file-system></file-system>
+  <v-app id="iae-side-nav">
+    <file-system></file-system>
+  </v-app>
 </template>
 
 <script>
@@ -12,4 +14,7 @@ export default {
 </script>
 
 <style>
+#iae-side-nav {
+  background-color: #616161;
+}
 </style>
