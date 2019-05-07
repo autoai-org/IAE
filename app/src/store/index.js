@@ -11,6 +11,7 @@ const store = new Vuex.Store({
       enable: false,
       text: ''
     },
+    currentTab: -1,
     currentTabs: [],
     currentPath: "",
     currentFiles: [],

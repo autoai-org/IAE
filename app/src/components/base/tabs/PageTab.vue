@@ -1,6 +1,6 @@
 <template>
   <div id="iae-pagetab">
-    <v-tabs v-model="active" color="primary" dark slider-color="yellow" height="36px;">
+    <v-tabs v-model="active" color="primary" dark show-arrows slider-color="yellow" height="36px;">
       <v-tab v-for="(item, index) in tabs" :key="index" :ripple="false">
         {{ item.title }}
         <span class="tab-close">
@@ -13,7 +13,10 @@
         <v-card flat>
           <v-card-text>
             <iae-html-tab v-if="item.type==='iae-html-page'" :content="item.content"></iae-html-tab>
-            <iae-image-annotation-tab v-if="item.type==='iae-image-annotation-page'" :imgPath="item.imgSrc"></iae-image-annotation-tab>
+            <iae-image-annotation-tab
+              v-if="item.type==='iae-image-annotation-page'"
+              :imgPath="item.imgSrc"
+            ></iae-image-annotation-tab>
           </v-card-text>
         </v-card>
       </v-tab-item>
@@ -32,7 +35,7 @@ export default {
   },
   data() {
     return {
-      active: null
+      active: 0
     };
   },
   methods: {
@@ -41,7 +44,25 @@ export default {
       this.active = active < 2 ? active + 1 : 0;
     },
     closeTab(index) {
-      this.$store.state.currentTabs.splice(index,1)
+      this.$store.state.currentTabs.splice(index, 1);
+    }
+  },
+  computed: {
+    currentTabIndicator() {
+      return this.$store.state.currentTab;
+    }
+  },
+  watch: {
+    currentTabIndicator: {
+      handler(newVal, oldVal) {
+        console.log(this.active);
+        console.log(newVal);
+        if (newVal !== this.active) {
+          console.log("turning to " + newVal);
+          this.active = newVal;
+        }
+        console.log(this.active);
+      }
     }
   }
 };

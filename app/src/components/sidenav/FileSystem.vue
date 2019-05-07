@@ -32,7 +32,7 @@
 import path from "path";
 import { LocalFiles } from "@/services/files/local";
 import { ipcRenderer } from "electron";
-import { pageOpened } from "@/services/pages";
+import { pageIndex } from "@/services/pages";
 import { ImageAnnotationPage } from "@/services/pages/AnnotationPage";
 
 let lf = new LocalFiles();
@@ -77,12 +77,9 @@ export default {
       this.fsDialog = false;
     },
     addImageToTabs(item) {
-      if (pageOpened(item)) {
-        console.log("cannot open page");
-        this.$store.state.snackbar.text =
-          "IAE cannot open two files with the same name";
-        this.$store.state.snackbar.enable = true;
-        console.log(this.$store.state)
+      let index = pageIndex(item);
+      if (index !== -1) {
+        this.$store.state.currentTab = index;
         return;
       }
       let imageAnnoPage = new ImageAnnotationPage(

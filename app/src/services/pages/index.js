@@ -18,20 +18,22 @@ class HTMLPage extends Page {
 // utility functions
 /**
  * Check if page has opened
+ * returns -1 if the page is not loaded
+ * or returns i indicating the index
  * @param title
  */
-function pageOpened (title) {
+function pageIndex (title) {
     let pages = store.state.currentTabs
     for(let i in pages) {
         if(pages[i].title === title) {
-            return true
+            return i
         }
     }
-    return false
+    return -1
 }
 
 export {
     Page,
     HTMLPage,
-    pageOpened
+    pageIndex
 }
