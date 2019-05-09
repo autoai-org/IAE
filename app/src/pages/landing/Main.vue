@@ -3,6 +3,9 @@
     <v-navigation-drawer app permanent>
       <side-nav></side-nav>
     </v-navigation-drawer>
+    <v-navigation-drawer permanent right absolute class="right-navigation">
+      <iae-objects-nav></iae-objects-nav>
+    </v-navigation-drawer>
 
     <v-content>
       <page-tab :tabs="pages" id="iae-main-tabs"></page-tab>
@@ -26,6 +29,7 @@
 import PageTab from "@/components/base/tabs/PageTab";
 import IAEFooter from "@/components/bottom/Footer";
 import SideNav from "@/components/sidenav/SideNav";
+import ObjectsNav from "@/components/sidenav/ObjectsNav"
 import Preferences from '@/components/base/dialogs/Preferences'
 import { WelcomePage } from "@/services/pages/WelcomePage";
 import { ipcRenderer } from 'electron'
@@ -35,7 +39,8 @@ export default {
     "iae-footer": IAEFooter,
     "page-tab": PageTab,
     "side-nav": SideNav,
-    "iae-preferences": Preferences
+    "iae-preferences": Preferences,
+    "iae-objects-nav": ObjectsNav
   },
   computed: {
     pages() {
@@ -92,5 +97,8 @@ export default {
 }
 #iae-footer {
   z-index: 999;
+}
+.right-navigation {
+  padding-top: 36px;
 }
 </style>

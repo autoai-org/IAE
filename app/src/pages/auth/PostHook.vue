@@ -37,7 +37,7 @@ export default {
         this.username = this.$store.state.cognito.user.username
         let key= this.$store.state.cognito.user.keyPrefix + '.' + this.username + '.userData'
         this.userdata = JSON.parse(this.$store.state.cognito.user.storage[key])
-        for(var idx in this.userdata.UserAttributes) {
+        for(let idx in this.userdata.UserAttributes) {
             if (this.userdata.UserAttributes[idx].Name === 'sub') {
                 this.userId = this.userdata.UserAttributes[idx].Value
             }

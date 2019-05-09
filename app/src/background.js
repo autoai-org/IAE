@@ -8,15 +8,13 @@ import {
 import { createMenu } from './services/electron/menu'
 import { initListeners } from './services/electron/listeners'
 
-// read config first
-
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 
 let win
-
+let loadingScreen
 // Standard scheme must be registered before the app is ready
 function createWindow() {
   // Create the browser window.
@@ -27,7 +25,8 @@ function createWindow() {
       nodeIntegration: true,
       nodeIntegrationInWorker: true,
       webSecurity: false
-    }
+    },
+    show: false
   })
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
@@ -36,11 +35,17 @@ function createWindow() {
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
+
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
-    win.fcWidget.init({
-      token: "56e9e8cb-5e94-4ec8-b3fb-b044d50f5ad7",
-      host: "https://wchat.freshchat.com"
+    win.webContents.on('did-finish-load', () => {
+      win.show();
+
+      if (loadingScreen) {
+        let loadingScreenBounds = loadingScreen.getBounds();
+        win.setBounds(loadingScreenBounds);
+        loadingScreen.close();
+      }
     });
   }
   win.maximize()
@@ -48,6 +53,21 @@ function createWindow() {
     win = null
   })
 }
+
+function createLoadingScreen() {
+  loadingScreen = new BrowserWindow(Object.assign({
+    width: 1000,
+    height: 700,
+    show: false,
+    frame: false
+  }, { parent: win }));
+  loadingScreen.loadURL('./assets/hosting/loading.html');
+  loadingScreen.on('closed', () => loadingScreen = null);
+  loadingScreen.webContents.on('did-finish-load', () => {
+    loadingScreen.show();
+  });
+}
+
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -70,6 +90,7 @@ app.on('activate', () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', async () => {
+  createLoadingScreen()
   createMenu()
   initListeners()
   if (isDevelopment && !process.env.IS_TEST) {

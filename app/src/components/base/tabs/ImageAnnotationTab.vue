@@ -38,7 +38,7 @@ export default {
       let drawer = new Drawer(this.imgName);
       drawer.drawBackgroundImage(this.imgPath);
       let results = azureAnalyzer.Results;
-      for (var i in results) {
+      for (let i in results) {
         if (results[i].path === this.imgPath.slice(5)) {
           drawer.drawIntellisense(results[i]);
         }
@@ -60,7 +60,15 @@ export default {
   left: 0;
   top: 0;
 }
+.canvas-container div {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 .image-anno-main {
   padding-bottom: 48px;
+}
+.intellisense-object:hover{
+  box-shadow: 0 0 0 99999px rgba(0, 0, 0, .8);
 }
 </style>

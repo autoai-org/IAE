@@ -10,7 +10,6 @@ class AzureAnalyzer extends Analyzer {
         this.key = key
     }
     async handleSingle(filepath) {
-        
         let headers = {
             'Ocp-Apim-Subscription-Key': this.key,
             'Content-Type': 'application/octet-stream'
@@ -28,12 +27,15 @@ class AzureAnalyzer extends Analyzer {
     }
     async handleArray(filepaths) {
         let cachedResults = []
-        for (var i in filepaths) {
-            let res = await this.handleSingle(filepaths[i])
-            cachedResults.push({
-                path: filepaths[i],
-                result: res.data
-            })
+        for (let i in filepaths) {
+            var stat = fs.statSync(filepaths[i]);
+            if (stat.isFile()) {
+                let res = await this.handleSingle(filepaths[i])
+                cachedResults.push({
+                    path: filepaths[i],
+                    result: res.data
+                })
+            }
         }
         this.Results = cachedResults
     }

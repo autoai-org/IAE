@@ -34,6 +34,7 @@ class LocalFiles extends Files {
         if(results.length === 0) {
             this.callIntellisense(filepath)
         }
+        store.state.currentObjects = results
     }
     callIntellisense (filepath) {
         let paths = store.state.currentFiles.map(function(each){
