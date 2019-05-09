@@ -1,12 +1,13 @@
 import { ipcMain } from 'electron'
-import { selectDirectoryDialog } from './menu'
+import { selectDirectoryDialog } from './base'
+
 function addOpenDirectoryListener() {
     ipcMain.on('open-folder-dialog', (event, arg) => {
         selectDirectoryDialog()
     })
 }
 
-function initListeners() {
+function initListeners () {
     addOpenDirectoryListener()
 }
 

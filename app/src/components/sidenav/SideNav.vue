@@ -1,7 +1,7 @@
 <template>
-  <v-app id="iae-side-nav">
+  <div>
     <file-system></file-system>
-  </v-app>
+  </div>
 </template>
 
 <script>

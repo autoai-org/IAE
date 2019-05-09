@@ -1,32 +1,41 @@
 <template>
   <v-app id="iae-app" dark>
-    <multipane>
+    <v-navigation-drawer app permanent>
       <side-nav></side-nav>
-      <pane-resizer></pane-resizer>
+    </v-navigation-drawer>
+
+    <v-content>
       <page-tab :tabs="pages" id="iae-main-tabs"></page-tab>
-    </multipane>
-    <iae-footer></iae-footer>
+    </v-content>
+
+    <v-footer color="primary" fixed dark id="iae-footer" height="36px;">
+      <iae-footer></iae-footer>
+    </v-footer>
+    
+    <div id="iae-other-global-components">
     <v-snackbar :top="true" :timeout="6000" v-model="snackbar.enable">
       {{ snackbar.text }}
       <v-btn color="pink" flat @click="closeSnackbar()">Close</v-btn>
     </v-snackbar>
+    <iae-preferences ref="iae-preferences"></iae-preferences>
+    </div>
   </v-app>
 </template>
 
 <script>
-import Multipane from "@/components/base/pane/Multipane";
-import PaneResizer from "@/components/base/pane/PaneResizer";
 import PageTab from "@/components/base/tabs/PageTab";
 import IAEFooter from "@/components/bottom/Footer";
 import SideNav from "@/components/sidenav/SideNav";
+import Preferences from '@/components/base/dialogs/Preferences'
 import { WelcomePage } from "@/services/pages/WelcomePage";
+import { ipcRenderer } from 'electron'
+
 export default {
   components: {
     "iae-footer": IAEFooter,
     "page-tab": PageTab,
-    Multipane,
-    PaneResizer,
-    "side-nav": SideNav
+    "side-nav": SideNav,
+    "iae-preferences": Preferences
   },
   computed: {
     pages() {
@@ -53,12 +62,23 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      preferences: false
+    };
   },
   methods: {
     closeSnackbar() {
       this.$store.state.snackbar.enable = false;
+    },
+    initListeners () {
+      let self = this
+      ipcRenderer.on('open-preferences', () => {
+        self.$refs["iae-preferences"].triggerDialog()
+      })
     }
+  },
+  created () {
+    this.initListeners()
   }
 };
 </script>
@@ -69,5 +89,8 @@ export default {
 }
 #iae-main-tabs {
   width: 100%;
+}
+#iae-footer {
+  z-index: 999;
 }
 </style>

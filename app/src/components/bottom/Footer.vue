@@ -1,17 +1,20 @@
 <template>
-    <v-footer color="primary" fixed dark height="24">
-        IAE
-        <v-spacer></v-spacer>
-        
-    </v-footer>
+  <div>
+    <div class="intellisense">
+      <v-chip label color="primary" small>
+        <v-progress-circular indeterminate size="12" color="white"></v-progress-circular>
+        &nbsp;IntelliSense
+      </v-chip>
+    </div>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
+<style scoped>
+.intellisense {
+  height: 36px;
+}
 </style>

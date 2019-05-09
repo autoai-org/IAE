@@ -1,13 +1,6 @@
-import { BrowserWindow, Menu, dialog } from 'electron'
+import {  Menu } from 'electron'
+import { selectDirectoryDialog, showPreferencesDialog } from './base'
 
-function selectDirectoryDialog() {
-    dialog.showOpenDialog({
-        properties: ['openDirectory']
-    }, function (filepaths, bookmarks) {
-        const focusedWindow = BrowserWindow.getFocusedWindow();
-        focusedWindow.webContents.send('selected-directory', filepaths);
-    });
-}
 
 function createMenu() {
     const template = [
@@ -17,8 +10,8 @@ function createMenu() {
                 { role: 'about' },
                 { type: 'separator' },
                 {
-                    label: 'Test',
-                    click: () => { console.log('plop') }
+                    label: 'Preferences',
+                    click: () => { showPreferencesDialog() }
                 },
                 {
                     label: 'Learn more',

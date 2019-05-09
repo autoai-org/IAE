@@ -1,20 +1,33 @@
 class Drawer {
-    constructor(elid) {
-        this.elid = elid
-        this.canvas = document.getElementById(elid)
-        console.log(this.canvas)
-        this.ctx = this.canvas.getContext("2d")
+    constructor(imgName) {
+        this.imgName = imgName
     }
     drawBackgroundImage(imgPath) {
-        let self = this
+        let backgroundCanvas = document.getElementById("iae-current-img-" + this.imgName)
+        let intelliSenseCanvas = document.getElementById("iae-intellisense-" + this.imgName)
+        let bgCtx = backgroundCanvas.getContext("2d")
         let image = new Image()
         image.src = imgPath
         image.onload = drawImg;
         function drawImg() {
-            self.canvas.width = image.width
-            self.canvas.height = image.height
-            self.ctx.drawImage(image,0,0);
-
+            intelliSenseCanvas.width = image.width
+            intelliSenseCanvas.height = image.height
+            backgroundCanvas.width = image.width
+            backgroundCanvas.height = image.height
+            bgCtx.drawImage(image,0,0);
+        }
+    }
+    drawIntellisense(result) {
+        let intelliSenseCanvas = document.getElementById("iae-intellisense-" + this.imgName)
+        let itlsCtx = intelliSenseCanvas.getContext("2d")
+        let objects = result.result.objects
+        console.log(itlsCtx)
+        for (var i in objects) {
+            itlsCtx.lineWidth = "5";
+            itlsCtx.strokeStyle = "blue";
+            // itlsCtx.rect(objects[i].rectangle.x, objects[i].rectangle.y, objects[i].rectangle.w, objects[i].rectangle.h);
+            console.log(objects[i].rectangle)
+            itlsCtx.strokeRect(objects[i].rectangle.x, objects[i].rectangle.y, objects[i].rectangle.w, objects[i].rectangle.h);
         }
     }
 }

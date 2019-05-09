@@ -11,15 +11,14 @@ const store = new Vuex.Store({
       enable: false,
       text: ''
     },
-    currentTab: -1,
+    currentTab: 0,
     currentTabs: [],
     currentPath: "",
     currentFiles: [],
     email: '',
     isLoading: false,
     isReady: false,
-    password: '',
-    snackbar: {}
+    password: ''
   },
   mutations: {
     setCurrentTabs: set('currentTabs'),

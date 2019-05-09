@@ -14,5 +14,6 @@ export default {
 <style>
 html {
   overflow-y:hidden;
+  background-color: #424242;
 }
 </style>

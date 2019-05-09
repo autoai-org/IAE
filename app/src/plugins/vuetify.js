@@ -7,6 +7,7 @@ Vue.use(Vuetify)
 export default new Vuetify({
   iconfont: 'md',
   theme: {
+    dark: true,
     primary: colors.blue.darken3, // #E53935
     secondary: colors.red.lighten4, // #FFCDD2
     accent: colors.indigo.base,

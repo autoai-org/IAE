@@ -2,18 +2,20 @@
   <v-container>
     <v-list dense class="filesystem">
       <v-subheader>
-        <v-chip label @click="fsDialog = true">{{folderTitle}}</v-chip>
+        <v-chip label @click="triggerDialog()">{{folderTitle}}</v-chip>
         <v-btn icon small @click="refreshFiles()">
           <v-icon small>sync</v-icon>
         </v-btn>
       </v-subheader>
-      <v-list-tile v-for="(item, index) in files" :key="index" @click="addImageToTabs(item)">
-        <v-list-tile-content>
-          <v-list-tile-title v-html="item">{{ item }}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+      <v-list-item v-for="(item, index) in files" :key="index" @click="addImageToTabs(item)">
+        <v-list-item-content>
+          <v-list-item-title v-html="item">
+            {{ item }}
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
-    <v-dialog v-model="fsDialog">
+    <v-dialog v-model="fsDialog" dark max-width="40%">
       <v-card>
         <v-card-title>Which Type of Filesystem Would You Like to Use?</v-card-title>
         <v-card-text>
@@ -32,8 +34,8 @@
 import path from "path";
 import { LocalFiles } from "@/services/files/local";
 import { ipcRenderer } from "electron";
-import { pageIndex } from "@/services/pages";
 import { ImageAnnotationPage } from "@/services/pages/AnnotationPage";
+import { pageIndex } from "@/services/pages";
 
 let lf = new LocalFiles();
 
@@ -66,10 +68,16 @@ export default {
   watch: {
     filepath(val) {
       this.title = val.substring(val.lastIndexOf("/") + 1);
+      lf.getCachedIntellisense(val)
     }
   },
   methods: {
-    refreshFiles() {},
+    triggerDialog() {
+      this.fsDialog = !this.fsDialog;
+    },
+    refreshFiles() {
+
+    },
     openFilesystem(target) {
       if (target === "local") {
         ipcRenderer.send("open-folder-dialog");
@@ -77,15 +85,20 @@ export default {
       this.fsDialog = false;
     },
     addImageToTabs(item) {
-      let index = pageIndex(item);
-      if (index !== -1) {
-        this.$store.state.currentTab = index;
-        return;
+      let pageIndx = pageIndex(item)
+      if (pageIndx !== -1) {
+        // page has been loaded, turn to this tab
+        if (this.$store.state.currentTab !== pageIndx) {
+          // and current tab is not target item
+          this.$store.state.currentTab = pageIndx;
+        }
+      } else {
+        // page not loaded, create one and push to stack
+        let imageAnnoPage = new ImageAnnotationPage(
+          path.join("file:///" + this.filepath, item)
+        );
+        this.$store.state.currentTabs.push(imageAnnoPage);
       }
-      let imageAnnoPage = new ImageAnnotationPage(
-        path.join("file:///" + this.filepath, item)
-      );
-      this.$store.state.currentTabs.push(imageAnnoPage);
     }
   }
 };
@@ -93,6 +106,5 @@ export default {
 
 <style scoped>
 .filesystem {
-  background-color: #616161;
 }
 </style>
