@@ -6,8 +6,13 @@ class Config {
     constructor() {
         this.intellisense = {
             provider: '',
-            key: '',
-            secret: ''
+            azure: {
+                key: '',
+                secret: ''
+            },
+            cvpm: {
+                endpoint: ''
+            }
         }
         this.iaePath = path.join(os.homedir(), 'autoai', 'iae')
         this.read()
@@ -17,11 +22,15 @@ class Config {
     }
     get JSON() {
         return {
-            'intellisense' : this.intellisense
+            'intellisense': this.intellisense
         }
     }
     set JSON(val) {
-        this.intellisense = val.intellisense
+        if (typeof (val) !== 'undefined' && val) {
+            if (typeof (val.intellisense !== 'undefined') && val.intellisense) {
+                this.intellisense = val.intellisense
+            }
+        }
     }
     parse() {
 

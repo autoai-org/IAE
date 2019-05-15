@@ -25,23 +25,10 @@ class AzureAnalyzer extends Analyzer {
             }
         )
     }
-    async handleArray(filepaths) {
-        let cachedResults = []
-        for (let i in filepaths) {
-            var stat = fs.statSync(filepaths[i]);
-            if (stat.isFile()) {
-                let res = await this.handleSingle(filepaths[i])
-                cachedResults.push({
-                    path: filepaths[i],
-                    result: res.data
-                })
-            }
-        }
-        this.Results = cachedResults
-    }
+
 }
 
-let azureAnalyzer = new AzureAnalyzer(config.JSON.intellisense.key)
+let azureAnalyzer = new AzureAnalyzer(config.JSON.intellisense.azure.key)
 
 export {
     azureAnalyzer

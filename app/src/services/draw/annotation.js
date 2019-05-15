@@ -19,13 +19,22 @@ function createIntellisenseElement(parentDiv, x, y, w, h, name, confidence) {
         objectDiv.appendChild(nameDiv)
     }
     // create Apply Button
-    let buttonDiv = document.createElement("button")
-    buttonDiv.style = "background-color:#66BB6A; height:24px"
-    buttonDiv.style.position = "absolute"
-    buttonDiv.style.bottom = "-27px"
-    buttonDiv.style.right = "-3px"
-    buttonDiv.innerHTML = '<i class="material-icons">done</i>'
-    objectDiv.appendChild(buttonDiv)
+    let applyButtonDiv = document.createElement("button")
+    applyButtonDiv.style = "background-color:#66BB6A; height:24px"
+    applyButtonDiv.style.position = "absolute"
+    applyButtonDiv.style.bottom = "-27px"
+    applyButtonDiv.style.right = "-3px"
+    applyButtonDiv.innerHTML = '<i class="material-icons">done</i>'
+    objectDiv.appendChild(applyButtonDiv)
+    // create Remove Button
+    let removeButtonDiv = document.createElement("button")
+    removeButtonDiv.style = "background-color:#EF5350; height:24px"
+    removeButtonDiv.style.position = "absolute"
+    removeButtonDiv.style.bottom = "-27px"
+    removeButtonDiv.style.right = "-30px"
+    removeButtonDiv.innerHTML = '<i class="material-icons">delete</i>'
+    objectDiv.appendChild(removeButtonDiv)
+    /*
     // create intellise label
     let intlDiv = document.createElement("p")
     intlDiv.style="color: #E0F2F1; background-color:#424242"
@@ -34,6 +43,7 @@ function createIntellisenseElement(parentDiv, x, y, w, h, name, confidence) {
     intlDiv.style.left = "-3px"
     intlDiv.innerHTML = "&nbsp;IntelliSense&nbsp;"
     objectDiv.appendChild(intlDiv)
+    */
 }
 
 export {

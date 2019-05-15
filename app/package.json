@@ -16,6 +16,7 @@
     "axios": "^0.18.0",
     "dayjs": "1.8.12",
     "electron": "5.0.0",
+    "exit": "^0.1.2",
     "fs-jetpack": "^2.2.2",
     "open": "6.1.0",
     "path-browserify": "^1.0.0",

@@ -11,7 +11,9 @@
     <v-list dense>
       <v-list-item v-for="(item, i) in objectList" :key="i">
         <v-list-item-content>
-          <v-list-item-title><p style="#FF00000">{{item}}</p></v-list-item-title>
+          <v-list-item-title>
+            <p :style="'color: ' + colors[i]">{{item}}</p>
+          </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -19,18 +21,32 @@
 </template>
 
 <script>
+import { COLORS } from "@/services/draw/constants";
 import { azureAnalyzer } from "@/services/intellisense/azure";
 export default {
+  data() {
+    return {
+      colors: COLORS
+    };
+  },
   computed: {
     objects() {
       return azureAnalyzer.Results;
     },
     objectList() {
-      return ["train"];
+      let objectNames = [];
+      this.objects.map(function(each) {
+        let results = each.result.objects;
+        results.map(function(each) {
+          objectNames.push(each.object);
+        });
+      });
+      // remove duplicate
+      let uniqObjectNames = Array.from(new Set(objectNames));
+      return uniqObjectNames;
     }
   },
   mounted() {
-    console.log(this.objects);
   }
 };
 </script>

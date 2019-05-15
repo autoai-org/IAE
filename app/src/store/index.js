@@ -11,6 +11,7 @@ const store = new Vuex.Store({
       enable: false,
       text: ''
     },
+    refreshIon: false,
     currentObjects: [],
     currentTab: 0,
     currentTabs: [],

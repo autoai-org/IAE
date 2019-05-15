@@ -4,7 +4,7 @@
       <side-nav></side-nav>
     </v-navigation-drawer>
     <v-navigation-drawer permanent right absolute class="right-navigation">
-      <iae-objects-nav></iae-objects-nav>
+      <iae-objects-nav :key="refreshION"></iae-objects-nav>
     </v-navigation-drawer>
 
     <v-content>
@@ -55,6 +55,9 @@ export default {
         enable: this.$store.state.snackbar.enable,
         text: this.$store.state.snackbar.text
       };
+    },
+    refreshION() {
+      return this.$store.state.refreshIon
     }
   },
   watch: {

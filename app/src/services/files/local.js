@@ -3,7 +3,10 @@ import { ipcRenderer } from 'electron'
 import fs from 'fs'
 import store from '@/store'
 import { azureAnalyzer } from "@/services/intellisense/azure"
+import { config } from '@/services/config'
+import { cvpmAnalyzer } from '@/services/intellisense/cvpm'
 import path from 'path'
+
 class LocalFiles extends Files {
     constructor() {
         super()
@@ -21,28 +24,37 @@ class LocalFiles extends Files {
     set fileslist(val) {
         this._fileslist = val
     }
-    getFileLists (filepath) {
+    getFileLists(filepath) {
         fs.readdir(filepath, (err, files) => {
             self._fileslist = files
             store.state.currentFiles = files
             store.state.currentPath = filepath
         })
     }
-    getCachedIntellisense (filepath) {
+    getCachedIntellisense(filepath) {
         azureAnalyzer.readCached(filepath)
         let results = azureAnalyzer.Results
-        if(results.length === 0) {
+        if (results.length === 0) {
             this.callIntellisense(filepath)
         }
         store.state.currentObjects = results
     }
-    callIntellisense (filepath) {
-        let paths = store.state.currentFiles.map(function(each){
+    callIntellisense(filepath) {
+        console.log(config.JSON)
+
+        let paths = store.state.currentFiles.map(function (each) {
             return path.join(filepath, each)
         })
-        azureAnalyzer.handleArray(paths).then(function(){
-            azureAnalyzer.writeCached(filepath)
-        })
+        if (config.JSON['intellisense']['provider'] === "CVPM") {
+            cvpmAnalyzer.handleArray(paths).then(function(res){
+                console.log(res)
+            })
+        } else if (config.JSON['intellisense']['provider'] === "Azure") {
+            azureAnalyzer.handleArray(paths).then(function () {
+                azureAnalyzer.writeCached(filepath)
+            })
+        }
+
     }
 }
 

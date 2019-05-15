@@ -32,8 +32,17 @@
               <v-expansion-panel>
                 <v-expansion-panel-header>Provider</v-expansion-panel-header>
                 <v-expansion-panel-content>
-                  <v-select v-model="provider.selectedProvider" :items="provider.available" label="Provider Name"></v-select>
-                  <v-text-field label="Provider Key" v-model="provider.key"></v-text-field>
+                  <v-select
+                    v-model="provider.selectedProvider"
+                    :items="provider.available"
+                    label="Provider Name"
+                  ></v-select>
+                  <div v-if="provider.selectedProvider==='Azure'">
+                    <v-text-field label="Provider Key" v-model="provider.azure.key"></v-text-field>
+                  </div>
+                  <div v-if="provider.selectedProvider==='CVPM'">
+                    <v-text-field label="Endpoint" v-model="provider.cvpm.endpoint"></v-text-field>
+                  </div>
                 </v-expansion-panel-content>
               </v-expansion-panel>
             </v-expansion-panels>
@@ -54,9 +63,16 @@ export default {
       sound: true,
       widgets: false,
       provider: {
-        selectedProvider: "",
-        available: ["Azure"],
-        key: ""
+        selectedProvider: config.JSON.intellisense.provider || "",
+        available: ["Azure", "CVPM"],
+        azure: {
+          key: config.JSON.intellisense.azure.key || "",
+          region: "SEA",
+          availableRegion: ["SEA"]
+        },
+        cvpm: {
+          endpoint: config.JSON.intellisense.cvpm.endpoint || ""
+        }
       }
     };
   },
@@ -68,9 +84,15 @@ export default {
       config.JSON = {
         intellisense: {
           provider: this.provider.selectedProvider,
-          key: this.provider.key
+          azure: {
+            key: this.provider.azure.key || "",
+            region: this.provider.azure.region || "",
+          },
+          cvpm: {
+            endpoint: this.provider.cvpm.endpoint || ""
+          }
         }
-      }
+      };
       config.write();
     }
   }
