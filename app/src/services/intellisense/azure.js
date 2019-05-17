@@ -1,6 +1,6 @@
 import Analyzer from './base'
 import { config } from '@/services/config'
-import axios from 'axios';
+import axios from 'axios'
 import fs from 'fs'
 class AzureAnalyzer extends Analyzer {
 
