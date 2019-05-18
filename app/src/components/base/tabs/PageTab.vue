@@ -92,5 +92,7 @@ export default {
 }
 .main-tabs-content {
   padding-top: 48px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 </style>

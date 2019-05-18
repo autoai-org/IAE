@@ -30,12 +30,12 @@ class Config {
         jetpack.write(path.join(this.iaePath, 'config.json'), this.JSON)
     }
     read() {
-        const constPath = path.join(this.iaePath, 'config.json')
-        const flag = jetpack.exists(constPath)
+        const confPath = path.join(this.iaePath, 'config.json')
+        const flag = jetpack.exists(confPath)
         if (!flag) {
           this.write()
         } else {
-          this.JSON = jetpack.read(constPath)
+          this.JSON = JSON.parse(jetpack.read(confPath))
         }
     }
 }
