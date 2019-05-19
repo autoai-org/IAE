@@ -26,7 +26,7 @@ export default {
       return azureAnalyzer.Results;
     },
     objectList() {
-      return ["train"];
+      return [];
     }
   },
   mounted() {

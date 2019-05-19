@@ -26,7 +26,7 @@ class LocalFiles extends Files {
         fs.readdir(filepath, (err, files) => {
             let filtered = []
             for (let each of files) {
-                if (mime.getType(each).match(/^image\/*/) != null) {
+                if (mime.getType(each) != null && mime.getType(each).match(/^image\/*/) != null) {
                   filtered.push(each)
                 }
             }
