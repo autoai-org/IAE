@@ -21,9 +21,9 @@
       <v-tab-item v-for="(item, index) in tabs" :key="index">
         <iae-html-tab v-if="item.type==='iae-html-page'" :content="item.content"></iae-html-tab>
         <iae-image-annotation-tab
-          ref="iae-image-annotation-tab"
-          v-if="item.type==='iae-image-annotation-page'"
-          :imgPath="item.imgSrc"
+          ref = "iae-image-annotation-tab"
+          v-if = "item.type==='iae-image-annotation-page'"
+          :imgPath = "item.imgSrc"
         ></iae-image-annotation-tab>
       </v-tab-item>
     </v-tabs-items>

@@ -22,10 +22,15 @@
                 <v-list-item-avatar>
                   <img :src="imgSrc" alt="Img">
                 </v-list-item-avatar>
-
                 <v-list-item-content v-if="exifError!==''">
                   <v-list-item-title>Error</v-list-item-title>
                   <v-list-item-subtitle>{{ exifError }}</v-list-item-subtitle>
+                </v-list-item-content>
+                <v-list-item-content v-if="exifData && exifError ==='' ">
+                  <v-list-item-title>Camera</v-list-item-title>
+                  <v-list-item-subtitle>{{ exifData.image.Model }}</v-list-item-subtitle>
+                  <v-list-item-title>Create At</v-list-item-title>
+                  <v-list-item-subtitle>{{ exifData.exif.CreateDate }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
             </v-list>
@@ -43,7 +48,15 @@ export default {
   data: () => ({
     exifMenu: false,
     exifError: "",
-    imgSrc: ""
+    imgSrc: "",
+    exifData: {
+      exif: {
+        CreateDate: ""
+      },
+      image: {
+        Model: ""
+      }
+    }
   }),
   watch: {
     exifMenu(val) {
@@ -52,35 +65,34 @@ export default {
           let fileSrc =
             store.state.currentTabs[store.state.currentTab]["imgSrc"];
           if (fileSrc) {
-            this.imgSrc = fileSrc
+            this.imgSrc = fileSrc;
             this.getExif(fileSrc);
           } else {
-            this.exifError = "Cannot Open " + fileSrc
+            this.exifError = "Cannot Open " + fileSrc;
           }
         } else {
-          this.exifError = "No Image File Selected"
+          this.exifError = "No Image File Selected";
         }
       }
     }
   },
   methods: {
     getExif(fileSrc) {
-      let self = this
-      let realFileSrc = fileSrc.slice(5)
+      let self = this;
+      let realFileSrc = fileSrc.slice(5);
       let ExifImage = require("exif").ExifImage;
       fs.readFile(realFileSrc, function(err, data) {
-        console.log(err)
         try {
           new ExifImage({ image: data }, function(error, exifData) {
             if (error) {
-              self.exifError = error.message
-              console.log("Error: " + error.message);
+              self.exifError = error.message;
+            } else {
+              self.exifData = exifData;
+              self.exifError = "";
             }
-            else console.log(exifData); // Do something with your data!
           });
         } catch (error) {
-          self.exifError = error.message
-          console.log("Error: " + error.message);
+          self.exifError = error.message;
         }
       });
     }

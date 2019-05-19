@@ -6,7 +6,7 @@ import store from './store'
 
 Vue.config.productionTip = false
 
-new Vue({
+export default new Vue({
   vuetify,
   router,
   store,
