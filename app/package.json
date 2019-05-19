@@ -17,6 +17,7 @@
     "dayjs": "1.8.12",
     "electron": "5.0.0",
     "fs-jetpack": "^2.2.2",
+    "mime": "^2.4.3",
     "open": "6.1.0",
     "path-browserify": "^1.0.0",
     "vue": "2.6.10",

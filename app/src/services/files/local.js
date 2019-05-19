@@ -1,6 +1,7 @@
 import { Files } from '@/services/files'
 import { ipcRenderer } from 'electron'
 import fs from 'fs'
+import mime from 'mime'
 import store from '@/store'
 import { azureAnalyzer } from "@/services/intellisense/azure"
 import path from 'path'
@@ -23,8 +24,14 @@ class LocalFiles extends Files {
     }
     getFileLists (filepath) {
         fs.readdir(filepath, (err, files) => {
-            self._fileslist = files
-            store.state.currentFiles = files
+            let filtered = []
+            for (let each of files) {
+                if (mime.getType(each).match(/^image\/*/) != null) {
+                  filtered.push(each)
+                }
+            }
+            self._fileslist = filtered
+            store.state.currentFiles = filtered
             store.state.currentPath = filepath
         })
     }
