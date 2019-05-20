@@ -3,10 +3,14 @@
 </template>
 
 <script>
+import bootstrap from '@/services/binding/key'
 export default {
   name: "App",
   data() {
     return {};
+  },
+  created () {
+    bootstrap()
   }
 };
 </script>

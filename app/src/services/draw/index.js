@@ -1,11 +1,18 @@
 import { createIntellisenseElement } from './intellisense'
-import { attachNameLabel, freezeElFrame } from './annotation'
+import { attachNameLabel, freezeElFrame, addObjectToCache } from './annotation'
 import { getElementOffset } from './utility'
 import store from '@/store'
 import { pageIndex } from '@/services/pages'
+import annotationCache from '@/services/cache/annotation'
+
 class Drawer {
     constructor(imgName) {
         this.imgName = imgName
+        this.coordinates = {}
+    }
+    loadPathCache() {
+        let currentPath = store.state.currentPath
+        annotationCache.load(currentPath)
     }
     setElWH(el, w, h) {
         el.style.width = w + 'px'
@@ -18,6 +25,7 @@ class Drawer {
         let bgCtx = backgroundCanvas.getContext("2d")
         let image = new Image()
         let self = this
+        self.imagePath = imgPath
         image.src = imgPath
         image.onload = drawImg;
         function drawImg() {
@@ -42,6 +50,8 @@ class Drawer {
         freezeElFrame(this.objectDiv, name)
         // recall init to finally freeze the frame
         this.initAnnotation()
+        // add item to cache
+        addObjectToCache(this.imagePath, this.coordinates, name)
     }
     clearCurrentAnnotation() {
         this.objectDiv.parentNode.removeChild(this.objectDiv)
@@ -96,6 +106,7 @@ class Drawer {
                     "w": x,
                     "h": y
                 }
+                self.coordinates = coordinates
                 self.setElWH(objectDiv, x, y)
             }
         }

@@ -48,12 +48,9 @@ export default {
         });
       });
       // append from annotated objects
-      console.log(this.annotatedObjects)
       objectNames = objectNames.concat(this.annotatedObjects);
-      console.log(objectNames)
       // remove duplicate
       this.uniqObjectNames = Array.from(new Set(objectNames));
-      console.log(this.uniqObjectNames)
     }
   },
   mounted() {
