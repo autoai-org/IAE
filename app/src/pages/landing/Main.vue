@@ -21,6 +21,7 @@
       <v-btn color="pink" flat @click="closeSnackbar()">Close</v-btn>
     </v-snackbar>
     <iae-preferences ref="iae-preferences"></iae-preferences>
+    <iae-export ref="iae-export"></iae-export>
     </div>
   </v-app>
 </template>
@@ -31,6 +32,7 @@ import IAEFooter from "@/components/bottom/Footer";
 import SideNav from "@/components/sidenav/SideNav";
 import ObjectsNav from "@/components/sidenav/ObjectsNav"
 import Preferences from '@/components/base/dialogs/Preferences'
+import Export from '@/components/base/dialogs/Export'
 import { WelcomePage } from "@/services/pages/WelcomePage";
 import { ipcRenderer } from 'electron'
 
@@ -40,6 +42,7 @@ export default {
     "page-tab": PageTab,
     "side-nav": SideNav,
     "iae-preferences": Preferences,
+    "iae-export":Export,
     "iae-objects-nav": ObjectsNav
   },
   computed: {
@@ -82,6 +85,10 @@ export default {
       let self = this
       ipcRenderer.on('open-preferences', () => {
         self.$refs["iae-preferences"].triggerDialog()
+      })
+      ipcRenderer.on('open-export', () => {
+        self.$refs["iae-export"].load()
+        self.$refs["iae-export"].triggerDialog()
       })
     }
   },

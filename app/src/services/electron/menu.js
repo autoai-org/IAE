@@ -1,5 +1,5 @@
 import {  Menu } from 'electron'
-import { selectDirectoryDialog, showPreferencesDialog } from './base'
+import { selectDirectoryDialog, showPreferencesDialog, showExportDialog } from './base'
 
 
 function createMenu() {
@@ -15,7 +15,7 @@ function createMenu() {
                 },
                 {
                     label: 'Learn more',
-                    click: () => { shell.openExternal('https://url') }
+                    click: () => { shell.openExternal('https://iae.autoai.org') }
                 },
                 { type: 'separator' },
                 { role: 'quit' }
@@ -27,6 +27,10 @@ function createMenu() {
                 {
                     label: 'Open Folder',
                     click: function () { selectDirectoryDialog(); }
+                },
+                {
+                    label: 'Export',
+                    click: function () { showExportDialog(); }
                 }
             ]
         }

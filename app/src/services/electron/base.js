@@ -14,7 +14,13 @@ function showPreferencesDialog() {
     focusedWindow.webContents.send('open-preferences');
 }
 
+function showExportDialog () {
+    const focusedWindow = BrowserWindow.getAllWindows()[0]
+    focusedWindow.webContents.send('open-export');
+}
+
 export {
     selectDirectoryDialog,
-    showPreferencesDialog
+    showPreferencesDialog,
+    showExportDialog
 }
