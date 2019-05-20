@@ -1,20 +1,20 @@
 <template>
   <v-app id="iae-app" dark>
-    <v-navigation-drawer app permanent>
+    <v-navigation-drawer app permanent class="left-navigation">
       <side-nav></side-nav>
     </v-navigation-drawer>
-    <v-navigation-drawer permanent right absolute class="right-navigation">
-      <iae-objects-nav :key="refreshION"></iae-objects-nav>
+    <v-navigation-drawer permanent right fixed class="right-navigation">
+      <iae-objects-nav></iae-objects-nav>
     </v-navigation-drawer>
 
-    <v-content>
-      <page-tab :tabs="pages" id="iae-main-tabs" ref="iae-tabs"></page-tab>
+    <v-content class="central-content">
+      <page-tab :tabs="pages" id="iae-main-tabs"></page-tab>
     </v-content>
 
     <v-footer color="primary" fixed dark id="iae-footer" height="36px;">
       <iae-footer></iae-footer>
     </v-footer>
-    
+
     <div id="iae-other-global-components">
     <v-snackbar :top="true" :timeout="6000" v-model="snackbar.enable">
       {{ snackbar.text }}
@@ -101,7 +101,17 @@ export default {
 #iae-footer {
   z-index: 999;
 }
+.left-navigation {
+  width: 256px;
+}
+.central-content {
+  width: calc(100vw - 286px);
+  margin-bottom: 36px;
+
+  overflow: auto;
+}
 .right-navigation {
+  width: 256px;
   padding-top: 36px;
 }
 </style>
