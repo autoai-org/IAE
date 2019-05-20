@@ -23,6 +23,7 @@ class HTMLPage extends Page {
  * @param title
  */
 function pageIndex (title) {
+    console.log()
     let pages = store.state.currentTabs
     for(let i in pages) {
         if(pages[i].title === title) {

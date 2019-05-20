@@ -7,21 +7,24 @@
     >Sorry, we no longer support your browser, please upgrade to latest Chrome, Firefox, Safari or any modern browser.</canvas>
     <div :id="'iae-annotation-' + imgName"></div>
     <div :id="'iae-intellisense-' + imgName"></div>
-    <v-dialog dark eager persistent v-model="dialogTrigger" class="finishing-annotating-dialog">
+    <v-dialog 
+      dark 
+      eager
+      width="300px"
+      persistent 
+      v-model="dialogTrigger" class="finishing-annotating-dialog">
       <v-card>
         <v-card-title primary-title>Finish Annotating</v-card-title>
         <v-card-text>
-        <v-flex xs12 sm6 md3>
           <v-text-field
             v-model="nameLabel"
             label="Label"
           ></v-text-field>
-        </v-flex>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <v-btn color="white" text @click="dialogTrigger = false">Cancel</v-btn>
+          <v-btn color="white" text @click="cancelAnnotation(); dialogTrigger = false">Cancel</v-btn>
 
           <v-btn color="white" text @click="drawNameLabel();dialogTrigger = false">Confirm</v-btn>
         </v-card-actions>
@@ -51,20 +54,11 @@ export default {
     imgName() {
       return this.imgPath.substring(this.imgPath.lastIndexOf("/") + 1);
     },
-    finishingAnnotatingObject() {
-      return this.$store.state.finishingAnnotatingObject;
-    }
-  },
-  watch: {
-    finishingAnnotatingObject(val) {
-      if (val) {
-        this.dialogTrigger = true;
-      }
-    }
   },
   methods: {
     drawImage() {
       let drawer = new Drawer(this.imgName);
+      // cache the drawer
       this.drawer = drawer
       drawer.drawBackgroundImage(this.imgPath);
       let results = azureAnalyzer.Results;
@@ -73,6 +67,12 @@ export default {
           drawer.drawIntellisense(results[i]);
         }
       }
+    },
+    triggerDialog () {
+      this.dialogTrigger = true
+    },
+    cancelAnnotation () {
+      this.drawer.clearCurrentAnnotation()
     },
     drawNameLabel () {
       this.drawer.drawName(this.nameLabel)

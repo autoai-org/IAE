@@ -1,3 +1,5 @@
+import uuidv4 from 'uuid/v4'
+import store from '../../store'
 function attachNameLabel(el, name) {
     let nameDiv = document.createElement("p")
     nameDiv.style="color: #E0F2F1; background-color:#424242"
@@ -8,11 +10,16 @@ function attachNameLabel(el, name) {
     el.appendChild(nameDiv)
 }
 
-function finishedAnnotation (el, name) {
-    console.log(el + ' ' + name)
+function freezeElFrame (el, name) {
+    el.id = name +'-'+uuidv4().split('-')[0]
+    addNamestoWorkplace(name)
+}
+
+function addNamestoWorkplace (name) {
+    store.state.annotatedObjects.push(name)
 }
 
 export {
     attachNameLabel,
-    finishedAnnotation
+    freezeElFrame
 }

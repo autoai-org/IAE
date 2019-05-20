@@ -29,7 +29,7 @@
                 <v-list-item-content v-if="exifData && exifError ==='' ">
                   <v-list-item-title>Camera</v-list-item-title>
                   <v-list-item-subtitle>{{ exifData.image.Model }}</v-list-item-subtitle>
-                  <v-list-item-title>Create At</v-list-item-title>
+                  <v-list-item-title>Created At</v-list-item-title>
                   <v-list-item-subtitle>{{ exifData.exif.CreateDate }}</v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>

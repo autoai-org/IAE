@@ -1,7 +1,8 @@
 import { createIntellisenseElement } from './intellisense'
-import { attachNameLabel } from './annotation'
+import { attachNameLabel, freezeElFrame } from './annotation'
 import { getElementOffset } from './utility'
 import store from '@/store'
+import { pageIndex } from '@/services/pages'
 class Drawer {
     constructor(imgName) {
         this.imgName = imgName
@@ -38,6 +39,12 @@ class Drawer {
     }
     drawName (name) {
         attachNameLabel(this.objectDiv, name)
+        freezeElFrame(this.objectDiv, name)
+        // recall init to finally freeze the frame
+        this.initAnnotation()
+    }
+    clearCurrentAnnotation() {
+        this.objectDiv.parentNode.removeChild(this.objectDiv)
     }
     initAnnotation () {
         let self = this
@@ -59,7 +66,7 @@ class Drawer {
         annotationDiv.onmousedown = function (event) {
             if (!needMove) {
                 needMove = true
-                store.state.finishingAnnotatingObject = false
+                store.state.finishingAnnotatingObject = -1
                 annotationDiv.style.cursor = 'move'
                 let startX = event.pageX - parentLeft
                 let startY = event.pageY - parentTop
@@ -94,7 +101,7 @@ class Drawer {
         }
         annotationDiv.onmouseup = function () {
             needMove = false
-            store.state.finishingAnnotatingObject = true
+            store.state.finishingAnnotatingObject = pageIndex(self.imgName)
         }
     }
 }

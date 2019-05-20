@@ -8,7 +8,7 @@
     </v-navigation-drawer>
 
     <v-content>
-      <page-tab :tabs="pages" id="iae-main-tabs"></page-tab>
+      <page-tab :tabs="pages" id="iae-main-tabs" ref="iae-tabs"></page-tab>
     </v-content>
 
     <v-footer color="primary" fixed dark id="iae-footer" height="36px;">

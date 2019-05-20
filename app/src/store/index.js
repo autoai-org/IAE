@@ -11,7 +11,8 @@ const store = new Vuex.Store({
       enable: false,
       text: ''
     },
-    finishingAnnotatingObject: false,
+    annotatedObjects: [],
+    finishingAnnotatingObject: -1,
     refreshIon: false,
     currentObjects: [],
     currentTab: 0,

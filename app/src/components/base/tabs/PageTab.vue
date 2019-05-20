@@ -21,9 +21,10 @@
       <v-tab-item v-for="(item, index) in tabs" :key="index">
         <iae-html-tab v-if="item.type==='iae-html-page'" :content="item.content"></iae-html-tab>
         <iae-image-annotation-tab
-          ref = "iae-image-annotation-tab"
-          v-if = "item.type==='iae-image-annotation-page'"
-          :imgPath = "item.imgSrc"
+          :id="'iae-image-annotation-tab-'+index"
+          :ref="'iae-image-annotation-tab-'+index"
+          v-if="item.type==='iae-image-annotation-page'"
+          :imgPath="item.imgSrc"
         ></iae-image-annotation-tab>
       </v-tab-item>
     </v-tabs-items>
@@ -47,6 +48,9 @@ export default {
   computed: {
     currentTab() {
       return this.$store.state.currentTab;
+    },
+    finishingAnnotatingObjectId() {
+      return this.$store.state.finishingAnnotatingObject;
     }
   },
   watch: {
@@ -55,6 +59,11 @@ export default {
         this.$nextTick(() => {
           this.active = parseInt(newVal);
         });
+      }
+    },
+    finishingAnnotatingObjectId(newVal) {
+      if (newVal >= 0) {
+        this.enableDialog(newVal);
       }
     },
     active: {
@@ -68,6 +77,10 @@ export default {
   methods: {
     closeTab(index) {
       this.$store.state.currentTabs.splice(index, 1);
+    },
+    enableDialog(index) {
+      console.log(this.$refs['iae-image-annotation-tab-' + index])
+      this.$refs['iae-image-annotation-tab-' + index][0].triggerDialog()
     },
     onTabsChange() {}
   }

@@ -21,6 +21,7 @@
     "fs-jetpack": "^2.2.2",
     "open": "6.1.0",
     "path-browserify": "^1.0.0",
+    "uuid": "^3.3.2",
     "vue": "2.6.10",
     "vue-router": "3.0.6",
     "vuetify": "^2.0.0-alpha.19",
