@@ -23,13 +23,17 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-    <v-snackbar v-model="snackbarTrigger" bottom vertical>{{ text }}</v-snackbar>
+    <v-snackbar v-model="snackbarTrigger" bottom vertical>
+      {{ text }}
+      <v-btn color="pink" text @click="openFolder()">Open Folder</v-btn>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
 import JsonViewer from "vue-json-viewer";
-
+var remote = require('electron').remote;
+var shell = remote.shell;
 import annotationCache from "@/services/cache/annotation";
 import store from "@/store";
 export default {
@@ -38,10 +42,7 @@ export default {
       dialog: false,
       annotationObject: {},
       snackbarTrigger: false,
-      text:
-        "The Annotation file has been saved to " +
-        store.state.currentPath +
-        "/.iae/annotation.json"
+      text: "The Annotation file has been saved"
     };
   },
   components: {
@@ -57,6 +58,10 @@ export default {
     },
     save() {
       this.snackbarTrigger = true;
+    },
+    openFolder () {
+        let filePath = store.state.currentPath + "/.iae/annotation.json"
+        shell.showItemInFolder(filePath)
     }
   }
 };
