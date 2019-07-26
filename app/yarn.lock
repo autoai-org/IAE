@@ -977,7 +977,7 @@
   resolved "https://registry.npm.taobao.org/@vue/web-component-wrapper/download/@vue/web-component-wrapper-1.2.0.tgz#bb0e46f1585a7e289b4ee6067dcc5a6ae62f1dd1"
   integrity sha1-uw5G8VhafiibTuYGfcxaauYvHdE=
 
-"@vuetify/vuex-cognito-module@^0.5.1":
+"@vuetify/vuex-cognito-module@0.5.1":
   version "0.5.1"
   resolved "https://registry.npm.taobao.org/@vuetify/vuex-cognito-module/download/@vuetify/vuex-cognito-module-0.5.1.tgz#fa83cf54f5b776f7a333f48b96b3ae8c0253b82e"
   integrity sha1-+oPPVPW3dvejM/SLlrOujAJTuC4=
@@ -1718,7 +1718,7 @@ aws4@^1.8.0:
   resolved "https://registry.npm.taobao.org/aws4/download/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha1-8OAD2cqef1nHpQiUXXsu+aBKVC8=
 
-axios@^0.18.0:
+axios@0.18.0:
   version "0.18.0"
   resolved "https://registry.npm.taobao.org/axios/download/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
   integrity sha1-MtU+SFHv3AoRmTts0AB4nXDAUQI=
@@ -3888,14 +3888,14 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
-exif@^0.6.0:
+exif@0.6.0:
   version "0.6.0"
   resolved "https://registry.npm.taobao.org/exif/download/exif-0.6.0.tgz#60a62668076542cb7e4f57199d4ac6f37d2c5f4a"
   integrity sha1-YKYmaAdlQst+T1cZnUrG830sX0o=
   dependencies:
     debug "^2.2"
 
-exit@^0.1.2:
+exit@0.1.2:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/exit/download/exit-0.1.2.tgz#0632638f8d877cc82107d30a0fff1a17cba1cd0c"
   integrity sha1-BjJjj42HfMghB9MKD/8aF8uhzQw=
@@ -4334,7 +4334,7 @@ fs-extra@^7.0.0, fs-extra@^7.0.1:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
-fs-jetpack@^2.2.2:
+fs-jetpack@2.2.2:
   version "2.2.2"
   resolved "https://registry.npm.taobao.org/fs-jetpack/download/fs-jetpack-2.2.2.tgz#c3737c585a618d8d636f76165c881b985493d6fd"
   integrity sha1-w3N8WFphjY1jb3YWXIgbmFST1v0=
@@ -5967,7 +5967,7 @@ mime@1.6.0:
   resolved "https://registry.npm.taobao.org/mime/download/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha1-Ms2eXGRVO9WNGaVor0Uqz/BJgbE=
 
-mime@^2.0.3, mime@^2.4.1, mime@^2.4.2, mime@^2.4.3:
+mime@2.4.3, mime@^2.0.3, mime@^2.4.1, mime@^2.4.2:
   version "2.4.3"
   resolved "https://registry.npm.taobao.org/mime/download/mime-2.4.3.tgz#229687331e86f68924e6cb59e1cdd937f18275fe"
   integrity sha1-IpaHMx6G9okk5stZ4c3ZN/GCdf4=
@@ -6709,7 +6709,7 @@ path-browserify@0.0.0:
   resolved "https://registry.npm.taobao.org/path-browserify/download/path-browserify-0.0.0.tgz#a0b870729aae214005b7d5032ec2cbbb0fb4451a"
   integrity sha1-oLhwcpquIUAFt9UDLsLLuw+0RRo=
 
-path-browserify@^1.0.0:
+path-browserify@1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/path-browserify/download/path-browserify-1.0.0.tgz#40702a97af46ae00b0ea6fa8998c0b03c0af160d"
   integrity sha1-QHAql69GrgCw6m+omYwLA8CvFg0=
@@ -7889,7 +7889,7 @@ sass-loader@7.1.0:
     pify "^3.0.0"
     semver "^5.5.0"
 
-sass@^1.18.0:
+sass@1.20.1:
   version "1.20.1"
   resolved "https://registry.npm.taobao.org/sass/download/sass-1.20.1.tgz#737b901fe072336da540b6d00ec155e2267420da"
   integrity sha1-c3uQH+ByM22lQLbQDsFV4iZ0INo=
@@ -8525,7 +8525,7 @@ strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   resolved "https://registry.npm.taobao.org/strip-json-comments/download/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
-style-loader@^0.23.1:
+style-loader@0.23.1:
   version "0.23.1"
   resolved "https://registry.npm.taobao.org/style-loader/download/style-loader-0.23.1.tgz#cb9154606f3e771ab6c4ab637026a1049174d925"
   integrity sha1-y5FUYG8+dxq2xKtjcCahBJF02SU=
@@ -9159,7 +9159,7 @@ uuid@3.1.0:
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
   integrity sha1-PdPT55Crwk17DToDT/q6vijrvAQ=
 
-uuid@^3.0.1, uuid@^3.3.2:
+uuid@3.3.2, uuid@^3.0.1, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha1-G0r0lV6zB3xQHCOHL8ZROBFYcTE=
@@ -9221,7 +9221,7 @@ vue-cli-plugin-electron-builder@1.2.0:
     webpack-chain "^5.0.0"
     yargs "^13.2.2"
 
-vue-cli-plugin-vuetify@^0.5.0:
+vue-cli-plugin-vuetify@0.5.0:
   version "0.5.0"
   resolved "https://registry.npm.taobao.org/vue-cli-plugin-vuetify/download/vue-cli-plugin-vuetify-0.5.0.tgz#14c9a61884da58cf6aaf8ff3309044931907f184"
   integrity sha1-FMmmGITaWM9qr4/zMJBEkxkH8YQ=
@@ -9255,7 +9255,7 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.3.tgz#2756f46cb3258054c5f4723de8ae7e87302a1ccf"
   integrity sha1-J1b0bLMlgFTF9HI96K5+hzAqHM8=
 
-vue-json-viewer@^2.1.4:
+vue-json-viewer@2.1.4:
   version "2.1.4"
   resolved "https://registry.npm.taobao.org/vue-json-viewer/download/vue-json-viewer-2.1.4.tgz#0b70bba17b62ae6f5339d1f9555f72252f00993d"
   integrity sha1-C3C7oXtirm9TOdH5VV9yJS8AmT0=
@@ -9305,21 +9305,21 @@ vue@2.6.10, vue@^2.6.9:
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha1-pysaQqTYKnIepDjRtr9V5mGVxjc=
 
-vuetify-loader@^1.0.5:
+vuetify-loader@1.2.2:
   version "1.2.2"
-  resolved "https://registry.npm.taobao.org/vuetify-loader/download/vuetify-loader-1.2.2.tgz#7c221dcfd8482344518818d598f9cef8ddd85b6b"
+  resolved "https://registry.npm.taobao.org/vuetify-loader/download/vuetify-loader-1.2.2.tgz?cache=0&sync_timestamp=1564063141569&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuetify-loader%2Fdownload%2Fvuetify-loader-1.2.2.tgz#7c221dcfd8482344518818d598f9cef8ddd85b6b"
   integrity sha1-fCIdz9hII0RRiBjVmPnO+N3YW2s=
   dependencies:
     loader-utils "^1.1.0"
 
-vuetify@^2.0.0-alpha.19:
+vuetify@2.0.0-alpha.20:
   version "2.0.0-alpha.20"
   resolved "https://registry.npm.taobao.org/vuetify/download/vuetify-2.0.0-alpha.20.tgz#34dc06bcc448ce7ef39599b05b99c6e3bbeecf68"
   integrity sha1-NNwGvMRIzn7zlZmwW5nG47vuz2g=
 
-vuex@^3.1.0:
+vuex@3.1.1:
   version "3.1.1"
-  resolved "https://registry.npm.taobao.org/vuex/download/vuex-3.1.1.tgz#0c264bfe30cdbccf96ab9db3177d211828a5910e"
+  resolved "https://registry.npm.taobao.org/vuex/download/vuex-3.1.1.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuex%2Fdownload%2Fvuex-3.1.1.tgz#0c264bfe30cdbccf96ab9db3177d211828a5910e"
   integrity sha1-DCZL/jDNvM+Wq52zF30hGCilkQ4=
 
 watchpack@^1.5.0:
