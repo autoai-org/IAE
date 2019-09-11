@@ -9477,10 +9477,10 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
 
-vue-json-viewer@2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/vue-json-viewer/-/vue-json-viewer-2.1.4.tgz#0b70bba17b62ae6f5339d1f9555f72252f00993d"
-  integrity sha512-788DocVoMu5T6ZimlzMSlolBIUtZZNQTvsQowV52ZnLUOvnaMccsGKxCKI0mLMS+h6W3ZDErb6r/GYFaDUNDkQ==
+vue-json-viewer@2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/vue-json-viewer/-/vue-json-viewer-2.2.4.tgz#ca0a944755a172ac85028c73d438d94540a05101"
+  integrity sha512-pJ7+Kdfz0TGgFBRb7zTxj0wkCwwUXwV4xBwGrOG6OFqlJmrlXU7Zs6QASRN5cJqOveyiFqCRh3EvfK6J2soEwQ==
   dependencies:
     clipboard "^2.0.4"
     vue "^2.6.9"
