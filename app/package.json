@@ -22,7 +22,7 @@
     "mime": "2.4.3",
     "open": "6.1.0",
     "path-browserify": "1.0.0",
-    "uuid": "3.3.2",
+    "uuid": "3.3.3",
     "vue": "2.6.10",
     "vue-json-viewer": "2.1.4",
     "vue-router": "3.0.6",
