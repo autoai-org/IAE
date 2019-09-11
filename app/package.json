@@ -19,7 +19,7 @@
     "exif": "0.6.0",
     "exit": "0.1.2",
     "fs-jetpack": "2.2.2",
-    "mime": "2.4.3",
+    "mime": "2.4.4",
     "open": "6.1.0",
     "path-browserify": "1.0.0",
     "uuid": "3.3.2",
